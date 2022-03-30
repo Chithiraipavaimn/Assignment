@@ -25,7 +25,7 @@ public class SumArray
                    if(i<j)
                    {
                        count++;
-                       System.out.println("["+arr[i]+","+arr[j]+"]");
+                       System.out.println(" ["+arr[i]+","+arr[j]+"] ");
                    }
                 }
             }
