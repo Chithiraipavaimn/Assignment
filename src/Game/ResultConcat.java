@@ -6,35 +6,15 @@ import java.util.*;
 
 public class ResultConcat extends MathGame
 {
-    public void concat_1()
-    {
-        String str="";
-        for(int i=0;i<4;i++)
-        {
-            str=str+options.get(i);
-        }
-        String str_r="";
-        for(int i=3;i>=0;i--)
-        {
-            str_r=str_r+options.get(i);
-        }
-        int ans=Integer.parseInt(str);
-        int ans1=Integer.parseInt(str_r);
-        if(ans==question_1 || ans1==question_1)
-         {
-             System.out.println("Answer is :" +question_1);
-             System.out.println("Successfully Passed to Next Level.");
-             System.exit(0);
-         }
-    }
     public int index_cal(int number)
     {
         int index=0;
         for(int i=0;i<4;i++)
         {
-            if(number== options.get(i))
+            if(number==options.get(i))
             {
                  index = i;
+                 break;
             }
         }
         return index;
@@ -42,23 +22,63 @@ public class ResultConcat extends MathGame
     public void operation()
     {
         Scanner scan=new Scanner(System.in);
-        List<Integer> store=options;
         int result=0;
-        do
+        while (options.size()!=0)
         {
-            System.out.println("Given numbers are: ");
-            System.out.println(options);
+            System.out.println("Your Choices: "+options);
             System.out.println("Enter your number: ");
             int number=scan.nextInt();
-            System.out.println("Operators: \n1. ( \n2. +\n3. -\n4. *\n5. /\n6. )");
+            System.out.println("Operators: \n1. +\n2. -\n3. *\n4. /\n5. Concat");
             int operator=scan.nextInt();
             switch (operator)
             {
                 case 1:
-                    index_cal(number);
+                    result=result+number;
+                    break;
+                case 2:
+                    result=result-number;
+                    break;
+                case 3:
+                    if(result==0)
+                    {
+                        result=1;
+                    }
+                    result=result*number;
+                    break;
+                case 4:
+                    if(result==0)
+                    {
+                        result=1;
+                    }
+                    result=result/number;
+                    break;
+                case 5:
+                    result=(result*10)+number;
+                    break;
+                default:
+                    System.out.println("Enter a valid operator");
+                    break;
 
             }
-
-        }while(question_1!=result);
+            System.out.println("result "+result);
+            options.remove(index_cal(number));
+        }
+        if(result!=question_1) {
+            System.out.println("Do you wish to restart your game (y/n):");
+            char ch = scan.next().charAt(0);
+            if (ch == 'y')
+            {
+                for(int i:arr)
+                {
+                    options.add(i);
+                }
+                operation();
+            }
+        }
+        else
+        {
+            System.out.println("Successfully Passed to Next Level");
+            System.exit(0);
+        }
     }
 }

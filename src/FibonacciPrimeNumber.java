@@ -2,33 +2,29 @@
 public class FibonacciPrimeNumber {
 
     public static void main(String[] args) {
-        int arr[]=new int[10];
         int a = 0, b = 1, c;
-        int i,j=0;
-        int count = 0;
-        while (j<10)
+        int i;
+         for(int k=2;k<=10;k++)
         {
             c = a + b;
-            if (c == 1) {
+            a = b;
+            b = c;
+            int temp=c;
+            if (c == 1)
+            {
                 continue;
             }
-            else {
-                for (i = 2; i <= c; i++) {
-                    if (c % i == 0) {
+            int count = 0;
+                for (i = 2; i <= temp/2; i++)
+                {
+                    if (temp % i == 0) {
                         count = 1;
                     }
                 }
-                if (count != 1) {
-                    arr[j]=c;
-                    j++;
+                if(count!=1)
+                {
+                    System.out.println(temp+" ");
                 }
-                a = b;
-                b = c;
-            }
-        }
-        for(int k:arr)
-        {
-            System.out.println(k+" ");
         }
     }
 }

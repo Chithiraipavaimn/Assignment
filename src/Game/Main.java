@@ -7,7 +7,6 @@ public class Main
     {
       ResultConcat mg=new ResultConcat();
       mg.input();
-      mg.concat_1();
       mg.operation();
     }
 }
